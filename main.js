@@ -506,7 +506,7 @@ function executeCode(line) {
         else if (teamPsuedoCurrent.startsWith("Display ")) {
             var print1 = teamPsuedoCurrent.substring(8);
             var phrase = print1.trim()
-            display = phrase
+            display = evaluatePhrase(phrase)
             document.getElementById('console').innerHTML += evaluatePhrase(phrase);
             document.getElementById('console').innerHTML += '\n';
 
@@ -554,6 +554,7 @@ function executeCode(line) {
                 alert("Syntax Error on line " + (teamPsuedoI + 1) + ".");
             }
             var teamPsuedoVar3 = prompt(display); // Need to change from prompt
+            display = ""
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
             console.log("var2 = " + teamPsuedoVar2)
             console.log("var3 = " + teamPsuedoVar3)
