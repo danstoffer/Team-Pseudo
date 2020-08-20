@@ -4,7 +4,7 @@ var teamPsuedoLoops = []
 var teamPsuedoFunctions = []
 var TeamPseudoIfs = []
 var TeamPseudoForVars = []
-var display
+var display = ""
 
 function main() {
     document.getElementById('console').innerHTML = "";
@@ -76,10 +76,10 @@ function executeCode(line) {
     // The fun stuff
     for (var teamPsuedoI = line; teamPsuedoI < teamPsuedoCode.length; teamPsuedoI++) {
         var teamPsuedoCurrent = teamPsuedoCode[teamPsuedoI].replace(/^\s+/g, ''); //Removes white space from the left side for indentation
-        console.log("Line " + (teamPsuedoI + 1))
-        console.log(teamPsuedovariables)
-        console.log("Line " + (teamPsuedoI + 1))
-        console.log(teamPsuedovariables)
+        //console.log("Line " + (teamPsuedoI + 1))
+        //console.log(teamPsuedovariables)
+        //console.log("Line " + (teamPsuedoI + 1))
+        //console.log(teamPsuedovariables)
 
         // Remove any comments that the user puts into the code
         teamPsuedoCurrent = teamPsuedoCurrent.split("//")[0];
@@ -88,26 +88,26 @@ function executeCode(line) {
         if (teamPsuedoLoops.length > 0) {
             teamPseudoWorkingLoop = teamPsuedoLoops.pop(teamPsuedoLoops.length)
             teamPsuedoLoops.push(teamPseudoWorkingLoop)
-            console.log("work loop: " + teamPseudoWorkingLoop)
-            console.log("loops: " + teamPsuedoLoops)
-            console.log(teamPseudoWorkingLoop[3])
+            //console.log("work loop: " + teamPseudoWorkingLoop)
+            //console.log("loops: " + teamPsuedoLoops)
+            //console.log(teamPseudoWorkingLoop[3])
             if (teamPseudoWorkingLoop[3] == false) {
-                console.log("in false")
+                //console.log("in false")
                 teamPseudoLoopEnd = false
                 teamPseudoCurrentLoop = teamPsuedoLoops.length
                 teamPseudoLoopType = teamPseudoWorkingLoop[1]
                 while (!teamPseudoLoopEnd) {
-                    console.log("move to " + teamPsuedoI)
-                    console.log("curent: " + teamPsuedoCurrent)
-                    console.log(teamPsuedoLoops.length)
+                    //console.log("move to " + teamPsuedoI)
+                    //console.log("curent: " + teamPsuedoCurrent)
+                    //console.log(teamPsuedoLoops.length)
                     if (teamPsuedoCurrent.startsWith("End While")) {
                         if ((teamPsuedoLoops.length == teamPseudoCurrentLoop) && (teamPseudoLoopType == "while")) {
                             teamPseudoLoopEnd = true
                             teamPsuedoLoops.pop()
-                            console.log("while loop end true")
-                            console.log(teamPsuedoI)
-                            console.log(teamPsuedoLoops)
-                            console.log(teamPsuedoCurrent)
+                            //console.log("while loop end true")
+                            //console.log(teamPsuedoI)
+                            //console.log(teamPsuedoLoops)
+                            //console.log(teamPsuedoCurrent)
 
                         }
                         else if (teamPsuedoLoops.length == teamPseudoCurrentLoop) {
@@ -121,7 +121,7 @@ function executeCode(line) {
                         if ((teamPsuedoLoops.length == teamPseudoCurrentLoop) && (teamPseudoLoopType == "do")) {
                             teamPseudoLoopEnd = true
                             teamPsuedoLoops.pop()
-                            console.log("do loop end true")
+                            //console.log("do loop end true")
                         }
                         else if (teamPsuedoLoops.length == teamPseudoCurrentLoop) {
                             error("There's a missing End Do While command")
@@ -134,7 +134,7 @@ function executeCode(line) {
                         if ((teamPsuedoLoops.length == teamPseudoCurrentLoop) && (teamPseudoLoopType == "for")) {
                             teamPseudoLoopEnd = true
                             teamPsuedoLoops.pop()
-                            console.log("for loop end true")
+                            //console.log("for loop end true")
                         }
                         else if (teamPsuedoLoops.length == teamPseudoCurrentLoop) {
                             error("There's a missing End For command")
@@ -144,20 +144,20 @@ function executeCode(line) {
                         }
                     }
                     else if (teamPsuedoCurrent.startsWith("While ")) {
-                        console.log("teamPseudoAdded while: " + teamPsuedoLoops)
+                        //console.log("teamPseudoAdded while: " + teamPsuedoLoops)
                         teamPsuedoLoops.push([teamPsuedoI, "while", teamPsuedoCurrent.substring(6), false])
                     }
                     else if (teamPsuedoCurrent.startsWith("Do ")) {
-                        console.log("teamPseudoAdded do: " + teamPsuedoLoops)
+                        //console.log("teamPseudoAdded do: " + teamPsuedoLoops)
                         teamPsuedoLoops.push([teamPsuedoI, "do", teamPsuedoCurrent.substring(3), false])
                     }
                     else if (teamPsuedoCurrent.startsWith("For ")) {
-                        console.log("teamPseudoAdded do: " + teamPsuedoLoops)
+                        //console.log("teamPseudoAdded do: " + teamPsuedoLoops)
                         teamPsuedoLoops.push([teamPsuedoI, "for", "1 == 0", false, "var", 1])
                     }
                     teamPsuedoI++
                     teamPsuedoCurrent = teamPsuedoCode[teamPsuedoI].replace(/^\s+/g, '');
-                    console.log("leaving at: " + teamPsuedoI + ": " + teamPsuedoCurrent)
+                    //console.log("leaving at: " + teamPsuedoI + ": " + teamPsuedoCurrent)
                 }
 
             }
@@ -506,8 +506,20 @@ function executeCode(line) {
         else if (teamPsuedoCurrent.startsWith("Display ")) {
             var print1 = teamPsuedoCurrent.substring(8);
             var phrase = print1.trim()
-            display = evaluatePhrase(phrase)
-            document.getElementById('console').innerHTML += evaluatePhrase(phrase);
+            var evalPhrase = evaluatePhrase(phrase)
+            display += evalPhrase
+            var teamPsuedoNext = teamPsuedoCode[teamPsuedoI + 1].replace(/^\s+/g, ''); //Removes white space from the left side for indentation
+            // Remove any comments that the user puts into the code
+            teamPsuedoNext = teamPsuedoNext.split("//")[0];
+            if (teamPsuedoNext.startsWith("Display "))
+                display += '\n'
+            else
+                display = evaluatePhrase(phrase)
+            if (!teamPsuedoNext.startsWith("Input ") && !teamPsuedoNext.startsWith("Display ")) {
+                alert(display);
+                display = ""
+            }
+            document.getElementById('console').innerHTML += evalPhrase;
             document.getElementById('console').innerHTML += '\n';
 
         } else if (teamPsuedoCurrent.startsWith("Set ")) {
@@ -556,8 +568,10 @@ function executeCode(line) {
             var teamPsuedoVar3 = prompt(display); // Need to change from prompt
             display = ""
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
-            console.log("var2 = " + teamPsuedoVar2)
-            console.log("var3 = " + teamPsuedoVar3)
+            document.getElementById('console').value += teamPsuedoVar3;
+            document.getElementById('console').value += '\n';
+            //console.log("var2 = " + teamPsuedoVar2)
+            //console.log("var3 = " + teamPsuedoVar3)
             if (typeof teamPsuedoVar3 == "string")
                 teamPsuedoVar3 = "\"" + teamPsuedoVar3 + "\""
             //console.log(typeof var3)
@@ -604,8 +618,8 @@ function executeCode(line) {
             teamPseudoEvaluate = teamPsuedoCurrent.substring(6);
             //console.log(teamPseudoEvaluate);
             teamPsuedoResult = tryEval(teamPseudoEvaluate);
-            console.log("results: " + teamPsuedoResult);
-            console.log("condition: " + teamPsuedoCurrent.substring(6))
+            //console.log("results: " + teamPsuedoResult);
+            //console.log("condition: " + teamPsuedoCurrent.substring(6))
 
             for (teamPseudoX = 0; teamPseudoX < teamPsuedoLoops.length; teamPseudoX++) {
                 if (teamPsuedoLoops[teamPseudoX][0] == teamPsuedoI) {
@@ -615,21 +629,21 @@ function executeCode(line) {
             if (!teamPseudoAdded) {
                 teamPsuedoLoops.push([teamPsuedoI, "while", teamPsuedoCurrent.substring(6), teamPsuedoResult])
             }
-            console.log("Loops: " + teamPsuedoLoops)
-            console.log("Loops: lengths " + teamPsuedoLoops.length)
+            //console.log("Loops: " + teamPsuedoLoops)
+            //console.log("Loops: lengths " + teamPsuedoLoops.length)
         } else if (teamPsuedoCurrent.startsWith("End While")) {
             //temp
             //teamPsuedoI = getLoop(teamPsuedoI);
-            console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
+            //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
             teamPseudoCurrentLoop = teamPsuedoLoops.pop()
-            console.log("current loop:" + teamPseudoCurrentLoop)
+            //console.log("current loop:" + teamPseudoCurrentLoop)
             if (teamPseudoCurrentLoop[1] == "while") {
                 if (tryEval(teamPseudoCurrentLoop[2]) == true) {
                     teamPseudoCurrentLoop[3] = true
                     teamPsuedoLoops.push(teamPseudoCurrentLoop)
                     teamPsuedoI = teamPseudoCurrentLoop[0]
-                    console.log("Loops: " + teamPsuedoLoops)
-                    console.log("Going to: " + teamPsuedoI)
+                    //console.log("Loops: " + teamPsuedoLoops)
+                    //console.log("Going to: " + teamPsuedoI)
                 }
                 else {
                     teamPseudoCurrentLoop[3] = false
@@ -652,25 +666,25 @@ function executeCode(line) {
                         }
                     }
                 }
-                console.log("phrase: " + teamPsuedoSplit.split("To"))
+                //console.log("phrase: " + teamPsuedoSplit.split("To"))
                 var teamPsuedoSplit = teamPsuedoSplit.split(" To ")
                 var teamPsuedoVar3 = teamPsuedoSplit[0].trim()
                 var maxValue = teamPsuedoSplit[1]
-                console.log(maxValue)
+                //console.log(maxValue)
                 if (maxValue.includes(" Step ")) {
                     teamPsuedoSplit = maxValue.split(" Step ")
                     maxValue = teamPsuedoSplit[0].trim()
                     teamPsuedoStep = teamPsuedoSplit[1].trim()
                 }
 
-                console.log("name: " + teamPsuedoVar2)
-                console.log("max: " + maxValue)
-                console.log("start: " + teamPsuedoVar3)
-                console.log("step: " + teamPsuedoVar3)
+                //console.log("name: " + teamPsuedoVar2)
+                //console.log("max: " + maxValue)
+                //console.log("start: " + teamPsuedoVar3)
+                //console.log("step: " + teamPsuedoVar3)
 
                 teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3).toString()
-                console.log("name " + teamPsuedoVar2);
-                console.log("value " + teamPsuedoVar3);
+                //console.log("name " + teamPsuedoVar2);
+                //console.log("value " + teamPsuedoVar3);
 
                 //Makes sure the variable name is valid
                 checkValidName(teamPsuedoVar2)
@@ -702,10 +716,10 @@ function executeCode(line) {
 
             teamPseudoAdded = false
             teamPseudoEvaluate = teamPsuedoVar2 + " <= " + maxValue;
-            console.log(teamPseudoEvaluate);
+            //console.log(teamPseudoEvaluate);
             teamPsuedoResult = tryEval(teamPseudoEvaluate);
-            console.log("results: " + teamPsuedoResult);
-            console.log("condition: " + teamPseudoEvaluate)
+            //console.log("results: " + teamPsuedoResult);
+            //console.log("condition: " + teamPseudoEvaluate)
 
             for (teamPseudoX = 0; teamPseudoX < teamPsuedoLoops.length; teamPseudoX++) {
                 if (teamPsuedoLoops[teamPseudoX][0] == teamPsuedoI) {
@@ -715,57 +729,57 @@ function executeCode(line) {
             if (!teamPseudoAdded) {
                 teamPsuedoLoops.push([teamPsuedoI, "for", teamPseudoEvaluate, teamPsuedoResult, teamPsuedoVar2, teamPsuedoStep])
                 TeamPseudoForVars.push(teamPsuedoVar2)
-                console.log("delete vars: " + TeamPseudoForVars)
+                //console.log("delete vars: " + TeamPseudoForVars)
             }
-            console.log("Loops: " + teamPsuedoLoops)
-            console.log("Loops: lengths " + teamPsuedoLoops.length)
+            //console.log("Loops: " + teamPsuedoLoops)
+            //console.log("Loops: lengths " + teamPsuedoLoops.length)
 
         }
 
         else if (teamPsuedoCurrent.startsWith("End For")) {
-            console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
+            //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
             teamPseudoCurrentLoop = teamPsuedoLoops.pop()
-            console.log("current loop:" + teamPseudoCurrentLoop)
+            //console.log("current loop:" + teamPseudoCurrentLoop)
             if (teamPseudoCurrentLoop[1] == "for") {
                 var teamPsuedoVar2 = teamPseudoCurrentLoop[4]; //Var Name
                 var teamPsuedoVar3 = teamPsuedoVar2 + " + " + teamPseudoCurrentLoop[5] //Var Value
                 teamPsuedoX = teamPsuedoVar1.length
 
-                console.log(teamPsuedoVar3)
+                //console.log(teamPsuedoVar3)
                 teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
-                console.log(teamPsuedoVar3)
+                //console.log(teamPsuedoVar3)
 
-                console.log("current loop:" + teamPseudoCurrentLoop)
-                console.log("eval1: " + teamPseudoCurrentLoop[2] + ": " + tryEval(teamPseudoCurrentLoop[2]))
+                //console.log("current loop:" + teamPseudoCurrentLoop)
+                //console.log("eval1: " + teamPseudoCurrentLoop[2] + ": " + tryEval(teamPseudoCurrentLoop[2]))
 
-                console.log("var: " + teamPsuedoVar2)
-                console.log(teamPsuedoVar2 + " + " + teamPseudoCurrentLoop[5])
+                //console.log("var: " + teamPsuedoVar2)
+                //console.log(teamPsuedoVar2 + " + " + teamPseudoCurrentLoop[5])
 
                 updateVariable(teamPsuedoVar2, teamPsuedoVar3);
                 //Eval updates the variable in the background
                 eval(teamPsuedoVar2 + " = " + teamPsuedoVar3)
 
-                console.log("eval1: " + teamPseudoCurrentLoop[2] + ": " + tryEval(teamPseudoCurrentLoop[2]))
+                //console.log("eval1: " + teamPseudoCurrentLoop[2] + ": " + tryEval(teamPseudoCurrentLoop[2]))
 
-                console.log("Loops U: " + teamPsuedoLoops)
+                //console.log("Loops U: " + teamPsuedoLoops)
 
                 if (tryEval(teamPseudoCurrentLoop[2]) == true) {
                     teamPseudoCurrentLoop[3] = true
                     teamPsuedoLoops.push(teamPseudoCurrentLoop)
                     teamPsuedoI = teamPseudoCurrentLoop[0]
-                    console.log("Loops: " + teamPsuedoLoops)
-                    console.log("Going to: " + teamPsuedoI)
+                    //console.log("Loops: " + teamPsuedoLoops)
+                    //console.log("Going to: " + teamPsuedoI)
 
                 }
                 else if (tryEval(teamPseudoCurrentLoop[2]) == false) {
                     teamPseudoCurrentLoop[3] = false
-                    console.log("b: " + teamPsuedovariables)
+                    //console.log("b: " + teamPsuedovariables)
                     //var removeIndex = checkVariableIndex(teamPsuedoVar2)
                     //console.log(removeIndex)
                     //delete teamPsuedovariables[0]
                     //teamPsuedovariables = teamPsuedovariables.splice[removeIndex, 1]
                     //var teamPsuedovariables = teamPsuedovariables.filter(function (el) { return el; });
-                    console.log("a: " + teamPsuedovariables)
+                    //console.log("a: " + teamPsuedovariables)
                 }
 
             }
@@ -778,8 +792,8 @@ function executeCode(line) {
             teamPseudoEvaluate = teamPsuedoCurrent.substring(9);
             //console.log(teamPseudoEvaluate);
             teamPsuedoResult = tryEval(teamPseudoEvaluate);
-            console.log("results: " + teamPsuedoResult);
-            console.log("condition: " + teamPsuedoCurrent.substring(9))
+            //console.log("results: " + teamPsuedoResult);
+            //console.log("condition: " + teamPsuedoCurrent.substring(9))
 
             for (teamPseudoX = 0; teamPseudoX < teamPsuedoLoops.length; teamPseudoX++) {
                 if (teamPsuedoLoops[teamPseudoX][0] == teamPsuedoI) {
@@ -789,19 +803,19 @@ function executeCode(line) {
             if (!teamPseudoAdded) {
                 teamPsuedoLoops.push([teamPsuedoI, "do", teamPsuedoCurrent.substring(9), true])
             }
-            console.log("Loops: " + teamPsuedoLoops)
-            console.log("Loops: lengths " + teamPsuedoLoops.length)
+            //console.log("Loops: " + teamPsuedoLoops)
+            //console.log("Loops: lengths " + teamPsuedoLoops.length)
         } else if (teamPsuedoCurrent.startsWith("End Do While")) {
-            console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
+            //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
             teamPseudoCurrentLoop = teamPsuedoLoops.pop()
-            console.log("current loop:" + teamPseudoCurrentLoop)
+            //console.log("current loop:" + teamPseudoCurrentLoop)
             if (teamPseudoCurrentLoop[1] == "do") {
                 if (tryEval(teamPseudoCurrentLoop[2]) == true) {
                     teamPseudoCurrentLoop[3] = true
                     teamPsuedoLoops.push(teamPseudoCurrentLoop)
                     teamPsuedoI = teamPseudoCurrentLoop[0]
-                    console.log("Loops: " + teamPsuedoLoops)
-                    console.log("Going to: " + teamPsuedoI)
+                    //console.log("Loops: " + teamPsuedoLoops)
+                    //console.log("Going to: " + teamPsuedoI)
                 }
                 else {
                     teamPseudoCurrentLoop[3] = false
@@ -814,7 +828,7 @@ function executeCode(line) {
         } else if (teamPsuedoCurrent.startsWith("End Module")) {
             return;
         } else if (teamPsuedoCurrent.startsWith("Module ")) {
-            console.log("you should never get this");
+            //console.log("you should never get this");
             //Do nothing
         } else if (teamPsuedoCurrent.startsWith("Call ")) {
             teamPsuedoCurrent = teamPsuedoCurrent.substring(5);
@@ -880,7 +894,7 @@ function executeCode(line) {
             
         }
     }
-    console.log("Done")
+    //console.log("Done")
 }
 
 function replaceVariables(teamPsuedoString) {
@@ -898,7 +912,7 @@ function getVariable(varName) {
 }
 
 function checkConstant(varName) {
-    console.log("var1 " + varName)
+    //console.log("var1 " + varName)
     for (var teamPsuedoI = 0; teamPsuedoI < teamPsuedovariables.length; teamPsuedoI++) {
         if (teamPsuedovariables[teamPsuedoI][0] == varName) {
             if (teamPsuedovariables[teamPsuedoI][4] == 1) {
