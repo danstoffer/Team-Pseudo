@@ -1454,3 +1454,37 @@ $(document).ready(function () {
         saveTextAsFile();
     });
 });
+
+//Allows user to download code text
+$(document).ready(function () {
+
+    function saveCodeAsFile() {
+        var textToWrite = document.getElementById("code").value;
+        var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+
+        var fileNameToSaveAs = prompt("Enter the filename you wish to save your pseudocode to", "");
+        if (fileNameToSaveAs === "") {
+            fileNameToSaveAs = "Pseudocode"
+        }
+
+        var downloadLink = document.createElement("a");
+
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "link";
+        window.URL = window.URL || window.webkitURL;
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    function destroyClickedElement(event) {
+        document.body.removeChild(event.target);
+    }
+
+    $("#save-code-to-file").click(function (e) {
+        e.preventDefault();
+        saveCodeAsFile();
+    });
+});
