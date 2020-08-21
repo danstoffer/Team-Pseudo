@@ -7,7 +7,7 @@ var TeamPseudoForVars = []
 var display = ""
 
 function main() {
-    document.getElementById('console').innerHTML = "";
+    document.getElementById('console').textContent = "";
 
     var teamPsuedocode = document.getElementById('code').value.split("\n");
     var teamPsuedostart = -1;
@@ -39,7 +39,7 @@ function main() {
 function executeCode(line) {
 
     // Clear output of the console
-    // document.getElementById('console').innerHTML = "";
+    document.getElementById('console').textContent = "";
 
     // Reset variables, loops, and ifs everytime the program is run.
     teamPsuedovariables = [];
@@ -519,8 +519,8 @@ function executeCode(line) {
                 alert(display);
                 display = ""
             }
-            document.getElementById('console').value += evalPhrase;
-            document.getElementById('console').value += '\n';
+            document.getElementById('console').textContent += evalPhrase;
+            document.getElementById('console').textContent += '\n';
 
         } else if (teamPsuedoCurrent.startsWith("Set ")) {
             if (teamPsuedoCurrent.includes("=")) {
@@ -568,8 +568,8 @@ function executeCode(line) {
             var teamPsuedoVar3 = prompt(display); // Need to change from prompt
             display = ""
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
-            document.getElementById('console').value += teamPsuedoVar3;
-            document.getElementById('console').value += '\n';
+            document.getElementById('console').textContent += teamPsuedoVar3;
+            document.getElementById('console').textContent += '\n';
             //console.log("var2 = " + teamPsuedoVar2)
             //console.log("var3 = " + teamPsuedoVar3)
             if (typeof teamPsuedoVar3 == "string")
@@ -1411,7 +1411,7 @@ function clickElem(elem) {
 
 //Code to clear contents
 function clearAll() {
-    document.getElementById('console').innerHTML = "";
+    document.getElementById('console').textContent = "";
 }
 
 //Creates lined textarea
