@@ -1379,10 +1379,14 @@ function openFile(func) {
             return;
         }
         var reader = new FileReader();
-        reader.onload = function (e) {
-            var contents = e.target.teamPsuedoResult;
-            fileInput.func(contents);
-            document.body.removeChild(fileInput);
+        // Code added to make Import button work
+        reader.onload = function () {
+            document.getElementById('code').textContent = reader.result;
+        // Code below was not working
+        //reader.onload = function (e) {
+        //    var contents = e.target.teamPsuedoResult;
+        //    fileInput.func(contents);
+        //    document.body.removeChild(fileInput);
         }
         reader.readAsText(file);
     }
