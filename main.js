@@ -7,7 +7,7 @@ var TeamPseudoForVars = []
 var display = ""
 
 function main() {
-    document.getElementById('console').value = "";
+    document.getElementById('console').innerHTML = "";
 
     var teamPsuedocode = document.getElementById('code').value.split("\n");
     var teamPsuedostart = -1;
@@ -517,8 +517,8 @@ function executeCode(line) {
                 alert(display);
                 display = ""
             }
-            document.getElementById('console').textContent += evalPhrase;
-            document.getElementById('console').textContent += '\n';
+            document.getElementById('console').innerHTML += evalPhrase;
+            document.getElementById('console').innerHTML += '\n';
 
         } else if (teamPsuedoCurrent.startsWith("Set ")) {
             if (teamPsuedoCurrent.includes("=")) {
@@ -566,8 +566,8 @@ function executeCode(line) {
             var teamPsuedoVar3 = prompt(display); // Need to change from prompt
             display = ""
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
-            document.getElementById('console').textContent += teamPsuedoVar3;
-            document.getElementById('console').textContent += '\n';
+            document.getElementById('console').innerHTML += teamPsuedoVar3;
+            document.getElementById('console').innerHTML += '\n';
             //console.log("var2 = " + teamPsuedoVar2)
             //console.log("var3 = " + teamPsuedoVar3)
             if (typeof teamPsuedoVar3 == "string")
