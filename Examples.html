@@ -29,6 +29,9 @@
 
       <b>Example Program 0-2: Pay Calculating</b><br><br>
       <pre>Module main()</pre>
+      <pre>    Declare Real hours</pre>
+      <pre>    Declare Real payRate</pre>
+      <pre>    Declare Real grossPay</pre>
       <pre>    Display "Enter the number of hours the employee worked."</pre>
       <pre>    Input hours</pre>
       <pre>    Display "Enter the employee's hourly pay rate."</pre>
@@ -39,7 +42,7 @@
       
       <b>Example Program 2-1: Display</b><br><br>
       <pre>Module main()</pre>
-      <pre>    Display "Kate Austen"Display "Kate Austen"</pre>
+      <pre>    Display "Kate Austen"</pre>
       <pre>    Display "1234 Walnut Street"</pre>
       <pre>    Display "Asheville, NC 28899"</pre>
       <pre>End Module</pre><br><br>
@@ -61,7 +64,7 @@
       <pre>    Input name</pre>
       <pre>    Display "Enter your age."</pre>
       <pre>    Input age</pre>
-      <pre>    Display "Hello ", name</pre>
+      <pre>    Display "Hello " + name</pre>
       <pre>    Display "You are " + age + " years old."</pre>
       <pre>End Module</pre><br><br>
       
@@ -76,6 +79,9 @@
       
       <b>Example Program 2-7: Set Price</b><br><br>
       <pre>Module main()</pre>
+      <pre>    Declare Integer price</pre>
+      <pre>    Declare Integer discount</pre>
+      <pre>    Declare Integer discount</pre>
       <pre>    Set price = 100</pre>
       <pre>    Set discount = 20</pre>
       <pre>    Set sale = price - discount</pre>
@@ -108,24 +114,23 @@
       <pre>End Module</pre><br><br>
       
       <b>Example Program 2-14: Documentation</b><br><br>
-      // Declare the variables<br><br>
-      Declare Real fiveYears<br><br>
-      Declare Real sevenYears<br><br>
-      Declare Real tenYears<br><br>
-      // Create a constant for the yearly rise<br><br>
-      Constant Real YEARLY_RISE = 1.5<br><br>
-      // Display the amount of rise in five years<br><br>
-      Set fiveYears = YEARLY_RISE * 5<br><br>
-      Display "The ocean levels will rise ", fiveYears,<br><br>
-      " millimeters in five years."<br><br>
-      // Display the amount of rise in seven years<br><br>
-      Set sevenYears = YEARLY_RISE * 7<br><br>
-      Display "The ocean levels will rise ", sevenYears,<br><br>
-      " millimeters in seven years."<br><br>
-      // Display the amount of rise in ten years<br><br>
-      Set tenYears = YEARLY_RISE * 10<br><br>
-      Display "The ocean levels will rise ", tenYears,<br><br>
-      " millimeters in ten years."<br><br>
+      <pre>Module main()</pre>
+      <pre>    // Declare the variables</pre>
+      <pre>    Declare Real fiveYears</pre>
+      <pre>    Declare Real sevenYears</pre>
+      <pre>    Declare Real tenYears</pre>
+      <pre>    // Create a constant for the yearly rise</pre>
+      <pre>    Constant Real YEARLY_RISE = 1.5</pre>
+      <pre>    // Display the amount of rise in five years</pre>
+      <pre>    Set fiveYears = YEARLY_RISE * 5</pre>
+      <pre>    Display "The ocean levels will rise " + fiveYears + " millimeters in five years."</pre>
+      <pre>    // Display the amount of rise in seven years</pre>
+      <pre>    Set sevenYears = YEARLY_RISE * 7</pre>
+      <pre>    Display "The ocean levels will rise " + sevenYears + " millimeters in seven years."</pre>
+      <pre>    // Display the amount of rise in ten years</pre>
+      <pre>    Set tenYears = YEARLY_RISE * 10</pre>
+      <pre>    Display "The ocean levels will rise " + tenYears + " millimeters in ten years."</pre>
+      <pre>End Module</pre>
   </div>
 
   <div>
