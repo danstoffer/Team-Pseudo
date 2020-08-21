@@ -565,9 +565,11 @@ function executeCode(line) {
             }
             var teamPsuedoVar3 = prompt(display); // Need to change from prompt
             display = ""
-            teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
             document.getElementById('console').innerHTML += teamPsuedoVar3;
             document.getElementById('console').innerHTML += '\n';
+            if (typeof teamPsuedoVar3 == "string" && !isInteger(teamPsuedoVar3) && !isReal(teamPsuedoVar3))
+                teamPsuedoVar3 = "\"" + teamPsuedoVar3 + "\""
+            teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
             //console.log("var2 = " + teamPsuedoVar2)
             //console.log("var3 = " + teamPsuedoVar3)
             if (typeof teamPsuedoVar3 == "string")
