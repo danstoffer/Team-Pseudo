@@ -7,7 +7,7 @@ var TeamPseudoForVars = []
 var display = ""
 
 function main() {
-    document.getElementById('console').textContent = "";
+    document.getElementById('console').value = "";
 
     var teamPsuedocode = document.getElementById('code').value.split("\n");
     var teamPsuedostart = -1;
