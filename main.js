@@ -513,8 +513,6 @@ function executeCode(line) {
             teamPsuedoNext = teamPsuedoNext.split("//")[0];
             if (teamPsuedoNext.startsWith("Display "))
                 display += '\n'
-            else
-                display = evaluatePhrase(phrase)
             if (!teamPsuedoNext.startsWith("Input ") && !teamPsuedoNext.startsWith("Display ")) {
                 alert(display);
                 display = ""
