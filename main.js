@@ -1379,7 +1379,7 @@ function openFile(func) {
         var reader = new FileReader();
         // Code added to make Import button work
         reader.onload = function () {
-            document.getElementById('code').textContent = reader.result;
+            document.getElementById('code').innerHTML = reader.result;
         // Code below was not working
         //reader.onload = function (e) {
         //    var contents = e.target.teamPsuedoResult;
