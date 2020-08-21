@@ -519,8 +519,8 @@ function executeCode(line) {
                 alert(display);
                 display = ""
             }
-            document.getElementById('console').innerHTML += evalPhrase;
-            document.getElementById('console').innerHTML += '\n';
+            document.getElementById('console').value += evalPhrase;
+            document.getElementById('console').value += '\n';
 
         } else if (teamPsuedoCurrent.startsWith("Set ")) {
             if (teamPsuedoCurrent.includes("=")) {
