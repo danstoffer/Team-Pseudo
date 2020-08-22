@@ -889,7 +889,11 @@ function executeCode(line) {
                 if (teamPsuedovariables[teamPsuedoJ][2] == 0) {
                     var temp = "Integer: " + teamPsuedovariables[teamPsuedoJ][0] + " = " + teamPsuedovariables[teamPsuedoJ][1] + "\n"
                 } else if (teamPsuedovariables[teamPsuedoJ][2] == 1) {
-                    var temp = "Real: " + teamPsuedovariables[teamPsuedoJ][0] + " = " + teamPsuedovariables[teamPsuedoJ][1] + "\n"
+                    var temp = "Real: " + teamPsuedovariables[teamPsuedoJ][0] + " = " + teamPsuedovariables[teamPsuedoJ][1]
+                    if (temp.charAt(temp.length - 1) == ".")
+                        temp = temp + "0" + "\n"
+                    else
+                        temp += "\n"
                 } else if (teamPsuedovariables[teamPsuedoJ][2] == 2) {
                     var temp = "String: " + teamPsuedovariables[teamPsuedoJ][0] + " = " + teamPsuedovariables[teamPsuedoJ][1] + "\n"
                 } else if (teamPsuedovariables[teamPsuedoJ][2] == 3) {
