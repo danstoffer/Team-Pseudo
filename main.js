@@ -1027,7 +1027,8 @@ function updateVariable(varName, teamPsuedoValue) {
             } else if (teamPsuedovariables[teamPsuedoI][2] == 3) {
                 teamPsuedoValue = teamPsuedoValue.toString();
                 teamPsuedoValue = teamPsuedoValue.trim();
-                teamPsuedoValue = teamPsuedoValue.charAt(0);
+                teamPsuedoValue = teamPsuedoValue.charAt(1);
+                teamPsuedoValue = "\'" + teamPsuedoValue + "\'"
                 if (!isArray)
                     teamPsuedovariables[teamPsuedoI][1] = teamPsuedoValue;
                 else {
