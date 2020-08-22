@@ -1298,7 +1298,7 @@ function checkValidName(name) {
     name = name.slice(0, bracket)
     //console.log(name)
 
-    if (/^[a-zA-Z0-9\[\]]*$/.test(name) == false) {
+    if (/^[a-zA-Z0-9\_\[\]]*$/.test(name) == false) {
         error(name + " contains a special character that variable names cannot contain")
     }
 
