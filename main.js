@@ -576,7 +576,7 @@ function executeCode(line) {
                 teamPsuedoVar3 != "true" && teamPsuedoVar3 != "false")
                 teamPsuedoVar3 = "\"" + teamPsuedoVar3 + "\""
             if (teamPsuedoVar3 == "True" || teamPsuedoVar3 == "False")
-                teamPsuedoVar3 = teamPsuedoVar3.toLowerCase()
+                teamPsuedoVar3 = teamPsuedoVar3.toLowerCase();
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
             //console.log("var2 = " + teamPsuedoVar2)
             //console.log("var3 = " + teamPsuedoVar3)
