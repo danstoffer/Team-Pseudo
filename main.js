@@ -574,6 +574,7 @@ function executeCode(line) {
             if (!isInteger(teamPsuedoVar3) && !isReal(teamPsuedoVar3) &&
                 teamPsuedoVar3 != "True" && teamPsuedoVar3 != "False" &&
                 teamPsuedoVar3 != "true" && teamPsuedoVar3 != "false")
+                teamPsuedoVar3 = "\"" + teamPsuedoVar3 + "\""
             if (teamPsuedoVar3 == "True" || teamPsuedoVar3 == "False")
                 teamPsuedoVar3 = teamPsuedoVar3.toLowerCase()
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
