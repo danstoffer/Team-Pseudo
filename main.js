@@ -289,6 +289,8 @@ function executeCode(line) {
                         teamPsuedoX = teamPsuedoVar1.length
                     }
                 }
+                if (teamPsuedoVar3 == "True" || teamPsuedoVar3 == "False")
+                    teamPsuedoVar3 = teamPsuedoVar3.toLowerCase()
                 teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3).toString()
                 //console.log("name " + var2);
                 //console.log("value " + var3);
@@ -411,6 +413,8 @@ function executeCode(line) {
                         teamPsuedoX = teamPsuedoVar1.length
                     }
                 }
+                if (teamPsuedoVar3 == "True" || teamPsuedoVar3 == "False")
+                    teamPsuedoVar3 = teamPsuedoVar3.toLowerCase()
                 teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3).toString()
                 //console.log("name " + var2);
                 //console.log("value " + var3);
@@ -567,8 +571,11 @@ function executeCode(line) {
             display = ""
             document.getElementById('console').innerHTML += teamPsuedoVar3;
             document.getElementById('console').innerHTML += '\n';
-            if (typeof teamPsuedoVar3 == "string" && !isInteger(teamPsuedoVar3) && !isReal(teamPsuedoVar3))
-                teamPsuedoVar3 = "\"" + teamPsuedoVar3 + "\""
+            if (!isInteger(teamPsuedoVar3) && !isReal(teamPsuedoVar3) &&
+                teamPsuedoVar3 != "True" && teamPsuedoVar3 != "False" &&
+                teamPsuedoVar3 != "true" && teamPsuedoVar3 != "false")
+            if (teamPsuedoVar3 == "True" || teamPsuedoVar3 == "False")
+                teamPsuedoVar3 = teamPsuedoVar3.toLowerCase()
             teamPsuedoVar3 = evaluatePhrase(teamPsuedoVar3)
             //console.log("var2 = " + teamPsuedoVar2)
             //console.log("var3 = " + teamPsuedoVar3)
