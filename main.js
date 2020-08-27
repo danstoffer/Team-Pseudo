@@ -257,6 +257,7 @@ function executeCode(line) {
 
         if (teamPsuedoCurrent == "") {
             // Do nothing
+// DECLARE    
         } else if (teamPsuedoCurrent.startsWith("Declare ")) {
             // Where we declare variables
             var teamPsuedoVar1 = teamPsuedoCurrent.substring(8);
@@ -381,6 +382,7 @@ function executeCode(line) {
             }
 
         }
+// CONSTANT        
         else if (teamPsuedoCurrent.startsWith("Constant ")) {
             // Where we declare variables
             var teamPsuedoVar1 = teamPsuedoCurrent.substring(9);
@@ -503,8 +505,8 @@ function executeCode(line) {
                     }
                 }
             }
-
         }
+// DISPLAY        
         //Display pseudocode has strings use quotation marks, variable names use no
         //Quotation marks, and concatinates strings with commas
         else if (teamPsuedoCurrent.startsWith("Display ")) {
@@ -524,7 +526,9 @@ function executeCode(line) {
             document.getElementById('console').innerHTML += evalPhrase;
             document.getElementById('console').innerHTML += '\n';
 
-        } else if (teamPsuedoCurrent.startsWith("Set ")) {
+        }
+// SET        
+        else if (teamPsuedoCurrent.startsWith("Set ")) {
             if (teamPsuedoCurrent.includes("=")) {
                 var teamPsuedoVar1 = teamPsuedoCurrent.substring(4);
                 teamPsuedoVar1 = formatEquals(teamPsuedoVar1);
@@ -561,7 +565,9 @@ function executeCode(line) {
                 error("Syntax Error on line " + (teamPsuedoI + 1) + ".");
             }
 
-        } else if (teamPsuedoCurrent.startsWith("Input ")) {
+        }
+// INPUT        
+        else if (teamPsuedoCurrent.startsWith("Input ")) {
             var teamPsuedoVar2 = teamPsuedoCurrent.substring(6);
             teamPsuedoVar2 = teamPsuedoVar2.trim()
             if (teamPsuedoVar2 == "") {
@@ -600,8 +606,9 @@ function executeCode(line) {
             } else {
                 error("Error: Variable does not exist");
             }
-
-        } else if (teamPsuedoCurrent.startsWith("If ")) {
+        }
+// IF        
+        else if (teamPsuedoCurrent.startsWith("If ")) {
             var ifCond = teamPsuedoCurrent.substring(3).trim()
             if (ifCond.endsWith("Then")) {
                 ifCond = ifCond.slice(0, ifCond.length - 4)
@@ -613,19 +620,23 @@ function executeCode(line) {
                 error("If statement conditions must be followed with \"Then\"")
             }
 
-        } else if (teamPsuedoCurrent.startsWith("Select ")) {
+        }
+// SELECT        
+        else if (teamPsuedoCurrent.startsWith("Select ")) {
             finishedCase = true
             foundCase = false
             selectCond = teamPsuedoCurrent.substring(7).trim()
             compareEx = evaluatePhrase(selectCond.toString()).toString()
             inSelect = true
             //console.log(selectCond)
-
-        } else if (teamPsuedoCurrent.startsWith("While ")) {
+        }
+// WHILE        
+        else if (teamPsuedoCurrent.startsWith("While ")) {
             teamPseudoAdded = false
             teamPseudoEvaluate = teamPsuedoCurrent.substring(6);
             //console.log(teamPseudoEvaluate);
-            teamPsuedoResult = tryEval(teamPseudoEvaluate);
+            teamPsuedoResult = evaluatePhrase(teamPseudoEvaluate)
+            //teamPsuedoResult = tryEval(teamPseudoEvaluate);
             //console.log("results: " + teamPsuedoResult);
             //console.log("condition: " + teamPsuedoCurrent.substring(6))
 
@@ -639,7 +650,9 @@ function executeCode(line) {
             }
             //console.log("Loops: " + teamPsuedoLoops)
             //console.log("Loops: lengths " + teamPsuedoLoops.length)
-        } else if (teamPsuedoCurrent.startsWith("End While")) {
+        }
+// END WHILE        
+        else if (teamPsuedoCurrent.startsWith("End While")) {
             //temp
             //teamPsuedoI = getLoop(teamPsuedoI);
             //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
@@ -657,10 +670,10 @@ function executeCode(line) {
                     teamPseudoCurrentLoop[3] = false
                 }
             }
-        } else if (teamPsuedoCurrent.startsWith("For ")) {
-
+        }
+// FOR        
+        else if (teamPsuedoCurrent.startsWith("For ")) {
             // try {
-
                 var teamPsuedoVar1 = teamPsuedoCurrent.substring(4);
                 var teamPsuedoStep = 1
                 var teamPsuedoVarType = 0
@@ -743,7 +756,7 @@ function executeCode(line) {
             //console.log("Loops: lengths " + teamPsuedoLoops.length)
 
         }
-
+// END FOR
         else if (teamPsuedoCurrent.startsWith("End For")) {
             //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
             teamPseudoCurrentLoop = teamPsuedoLoops.pop()
@@ -795,7 +808,9 @@ function executeCode(line) {
                 error("There is a missing End For keyword")
             }
 
-        } else if (teamPsuedoCurrent.startsWith("Do While ")) {
+        }
+// DO WHILE        
+        else if (teamPsuedoCurrent.startsWith("Do While ")) {
             teamPseudoAdded = false
             teamPseudoEvaluate = teamPsuedoCurrent.substring(9);
             //console.log(teamPseudoEvaluate);
@@ -813,7 +828,9 @@ function executeCode(line) {
             }
             //console.log("Loops: " + teamPsuedoLoops)
             //console.log("Loops: lengths " + teamPsuedoLoops.length)
-        } else if (teamPsuedoCurrent.startsWith("End Do While")) {
+        }
+// END DO WHILE        
+        else if (teamPsuedoCurrent.startsWith("End Do While")) {
             //console.log(teamPsuedoLoops + " i: " + teamPsuedoCurrent)
             teamPseudoCurrentLoop = teamPsuedoLoops.pop()
             //console.log("current loop:" + teamPseudoCurrentLoop)
@@ -833,12 +850,18 @@ function executeCode(line) {
                 error("There is a missing End Do While keyword")
             }
 
-        } else if (teamPsuedoCurrent.startsWith("End Module")) {
+        }
+// END MODULE        
+        else if (teamPsuedoCurrent.startsWith("End Module")) {
             return;
-        } else if (teamPsuedoCurrent.startsWith("Module ")) {
+        }
+// MODULE        
+        else if (teamPsuedoCurrent.startsWith("Module ")) {
             //console.log("you should never get this");
             //Do nothing
-        } else if (teamPsuedoCurrent.startsWith("Call ")) {
+        }
+// CALL        
+        else if (teamPsuedoCurrent.startsWith("Call ")) {
             teamPsuedoCurrent = teamPsuedoCurrent.substring(5);
             teamPsuedoCurrent = teamPsuedoCurrent.split("(")[0];
             teamPsuedoCurrent = teamPsuedoCurrent.trim();
