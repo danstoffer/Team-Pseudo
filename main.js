@@ -260,7 +260,7 @@ function executeCode(line) {
 // DECLARE    
         } else if (teamPsuedoCurrent.startsWith("Declare ")) {
             // Where we declare variables
-            var teamPsuedoVar1 = teamPsuedoCurrent.substring(8);
+            var teamPsuedoVar1 = teamPsuedoCurrent.substring(8).trim();
             var teamPsuedoVarType = teamPsuedoVar1.split(" ")[0];
             if (teamPsuedoVarType == "Integer") {
                 teamPsuedoVarType = 0;
@@ -385,7 +385,7 @@ function executeCode(line) {
 // CONSTANT        
         else if (teamPsuedoCurrent.startsWith("Constant ")) {
             // Where we declare variables
-            var teamPsuedoVar1 = teamPsuedoCurrent.substring(9);
+            var teamPsuedoVar1 = teamPsuedoCurrent.substring(9).trim();
             var teamPsuedoVarType = teamPsuedoVar1.split(" ")[0];
             if (teamPsuedoVarType == "Integer") {
                 teamPsuedoVarType = 0;
