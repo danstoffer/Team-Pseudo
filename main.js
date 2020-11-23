@@ -646,7 +646,7 @@ function executeCode(line) {
                 }
             }
             if (!teamPseudoAdded) {
-                teamPsuedoLoops.push([teamPsuedoI, "while", teamPsuedoCurrent.substring(6), teamPsuedoResult])
+                teamPsuedoLoops.push([teamPsuedoI, "while", teamPseudoEvaluate, teamPsuedoResult])
             }
             //console.log("Loops: " + teamPsuedoLoops)
             //console.log("Loops: lengths " + teamPsuedoLoops.length)
