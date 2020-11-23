@@ -510,7 +510,7 @@ function executeCode(line) {
         //Display pseudocode has strings use quotation marks, variable names use no
         //Quotation marks, and concatinates strings with commas
         else if (teamPsuedoCurrent.startsWith("Display ")) {
-            var print1 = teamPsuedoCurrent.substring(8);
+            var print1 = teamPsuedoCurrent.substring(8).trim();
             var phrase = print1.trim()
             var evalPhrase = evaluatePhrase(phrase)
             display += evalPhrase
@@ -530,7 +530,7 @@ function executeCode(line) {
 // SET        
         else if (teamPsuedoCurrent.startsWith("Set ")) {
             if (teamPsuedoCurrent.includes("=")) {
-                var teamPsuedoVar1 = teamPsuedoCurrent.substring(4);
+                var teamPsuedoVar1 = teamPsuedoCurrent.substring(4).trim();
                 teamPsuedoVar1 = formatEquals(teamPsuedoVar1);
                 for (teamPsuedoX = 0; teamPsuedoX < teamPsuedoVar1.length; teamPsuedoX++) {
                     if (teamPsuedoVar1[teamPsuedoX] == "=") {
@@ -568,7 +568,7 @@ function executeCode(line) {
         }
 // INPUT        
         else if (teamPsuedoCurrent.startsWith("Input ")) {
-            var teamPsuedoVar2 = teamPsuedoCurrent.substring(6);
+            var teamPsuedoVar2 = teamPsuedoCurrent.substring(6).trim();
             teamPsuedoVar2 = teamPsuedoVar2.trim()
             if (teamPsuedoVar2 == "") {
                 alert("Syntax Error on line " + (teamPsuedoI + 1) + ".");
@@ -633,9 +633,11 @@ function executeCode(line) {
 // WHILE        
         else if (teamPsuedoCurrent.startsWith("While ")) {
             teamPseudoAdded = false
-            teamPseudoEvaluate = teamPsuedoCurrent.substring(6);
+            teamPseudoEvaluate = teamPsuedoCurrent.substring(6).trim();
+            var updatedTeamPseudoWhile = teamPseudoEvaluate.replace(/OR/g, "||");
+            updatedTeamPseudoWhile = updatedTeamPseudoWhile.replace(/AND/g, "&&");
             //console.log(teamPseudoEvaluate);
-            teamPsuedoResult = evaluatePhrase(teamPseudoEvaluate)
+            teamPsuedoResult = evaluatePhrase(updatedTeamPseudoWhile)
             //teamPsuedoResult = tryEval(teamPseudoEvaluate);
             //console.log("results: " + teamPsuedoResult);
             //console.log("condition: " + teamPsuedoCurrent.substring(6))
@@ -646,7 +648,7 @@ function executeCode(line) {
                 }
             }
             if (!teamPseudoAdded) {
-                teamPsuedoLoops.push([teamPsuedoI, "while", teamPseudoEvaluate, teamPsuedoResult])
+                teamPsuedoLoops.push([teamPsuedoI, "while", updatedTeamPseudoWhile, teamPsuedoResult])
             }
             //console.log("Loops: " + teamPsuedoLoops)
             //console.log("Loops: lengths " + teamPsuedoLoops.length)
@@ -674,7 +676,7 @@ function executeCode(line) {
 // FOR        
         else if (teamPsuedoCurrent.startsWith("For ")) {
             // try {
-                var teamPsuedoVar1 = teamPsuedoCurrent.substring(4);
+                var teamPsuedoVar1 = teamPsuedoCurrent.substring(4).trim();
                 var teamPsuedoStep = 1
                 var teamPsuedoVarType = 0
                 if (teamPsuedoCurrent.includes("=")) {
@@ -812,7 +814,7 @@ function executeCode(line) {
 // DO WHILE        
         else if (teamPsuedoCurrent.startsWith("Do While ")) {
             teamPseudoAdded = false
-            teamPseudoEvaluate = teamPsuedoCurrent.substring(9);
+            teamPseudoEvaluate = teamPsuedoCurrent.substring(9).trim();
             //console.log(teamPseudoEvaluate);
             teamPsuedoResult = tryEval(teamPseudoEvaluate);
             //console.log("results: " + teamPsuedoResult);
